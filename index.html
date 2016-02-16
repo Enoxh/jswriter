@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <title>JavaScript Code Writer</title>
+
+    <!--  -->
+
+    <style>
+        #output {
+            width: 100%;
+            height: 350px;
+        }
+        
+        box {
+            padding: 20px;
+            width: 300px;
+        }
+        
+        input[type='checkbox'] {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 5px;
+            border: 2px solid #555;
+        }
+    </style>
+
+</head>
+
+<body style="min-width:550px; width:700px;">
+
+    <div class="container" style="margin-top:70px; width:550px">
+
+        <div class="jumbotron">
+            <h2>JavaScript Code Writer</h2>
+            <small>Click a code type then input the necessary options and hit the button and the code will appear in the box below.</small>
+
+        </div>
+
+        <div class="panel-group" id="accordion">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+Variable</a>
+</h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <div class="box well">
+                            <div id="errBox"></div>
+
+                            <table class="table  table-striped" style="max-width:400px;">
+
+
+                                <tr>
+                                    <td>
+                                        <label>Variable Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Variable Value</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="val">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Variable is a string:</td>
+                                    <td>
+                                        <input type="checkbox" id="isString" value="astring">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Declare as a new variable.</td>
+                                    <td>
+                                        <input type="checkbox" id="declared" value="declare">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <button onclick="makeVar()">Make Variable</button>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+Array</a>
+</h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <div class="box well">
+                            <table class="table  table-striped" style="max-width:650px;">
+
+                                <tr>
+                                    <td>
+                                        <div id="errBoxArray"></div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Declare a new array. </td>
+                                    <td>
+                                        <input type="checkbox" id="arrDeclared" value="arrDeclare">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label>Array Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="arrName">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Number of Values</label>
+                                    </td>
+                                    <td>
+                                        <input type="number" min="0" id="arrVal" onchange=showVals(); style="width:40px;">
+                                        <div id="showVals"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Value is a string. </label>
+                                    </td>
+                                    <td>
+
+                                        <input type="checkbox" id="arrIsString" value="arrIstring">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button onclick="makeArray()">Make Array</button>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <br/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+For Loop</a>
+</h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <div class="box well">
+                            <table class="table  table-striped" style="max-width:500px;">
+                                <tr>
+                                    <td>
+                                        <div id="loopErrBox"></div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Create a for loop. </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>i starts out as</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="loopStart" value=0>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>i is: </label>
+                                        <select id="loopMaxCond">
+                                            <option value="<">Less then</option>
+                                            <option value=">">Greater then</option>
+                                            <option value=">=">Greater then or equal to</option>
+                                            <option value="<=">Less then or equal to</option>
+                                            <option value="=">Equal to</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="loopMax" style="width:150px;" value="arr.length">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>i increments</label>
+                                    </td>
+                                    <td>
+                                        <select id="loopIncr">
+                                            <option value="++">Up</option>
+                                            <option value="--">Down</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button onclick="makeForLoop()">Make For Loop</button>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <br/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+Function</a>
+</h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <div class="box well">
+                            <table class="table  table-striped" style="max-width:400px;">
+                                <tr>
+                                    <td>
+                                        <div id="funcErrBox"></div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Declare this function as a variable. </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="funcAsVar" value="funcAsVar">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Function Name</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="funcName">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Number of Arguments</label>
+                                    </td>
+                                    <td>
+                                        <input type="number" min="0" max="26" id="argVal" onchange=showArgs(); style="width:40px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Arguments are strings.</label>
+                                    </td>
+                                    <td>
+                                        <input class="form-control sm" type="checkbox" id="argIsString" value="argIsString">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <div id="showArgs"></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button onclick="makeFunc()">Make Function</button>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <br/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+Random Code</a>
+</h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <div class="box well">
+                            <table class="table  table-striped" style="max-width:400px;">
+                                <tr>
+                                    <td>
+                                        <div id="rndErrBox"></div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label>Variable: </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="rndz" id="rndVar" value="rndVar">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Array: </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="rndz" id="rndArr" value="rndArr">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>For Loop: </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="rndz" id="rndLoop" value="rndLoop">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Function: </label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="rndz" id="rndFunc" value="rndFunc">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button onclick="randomizer()">Randomize!</button>
+                                        <br/>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <br/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <textarea id="output"></textarea>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // the selector will match all input controls of type :checkbox
+        // and attach a click event handler 
+        $("input:checkbox").on('click', function () {
+            // in the handler, 'this' refers to the box clicked on
+            var $box = $(this);
+            if ($box.is(":checked")) {
+                // the name of the box is retrieved using the .attr() method
+                // as it is assumed and expected to be immutable
+                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                // the checked state of the group/box on the other hand will change
+                // and the current value is retrieved using .prop() method
+                $(group).prop("checked", false);
+                $box.prop("checked", true);
+            } else {
+                $box.prop("checked", false);
+            }
+        });
+    </script>
+</body>
+
+</html>
